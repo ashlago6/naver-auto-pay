@@ -1,0 +1,11 @@
+# 민감 정보 - 절대 커밋 금지
+session.json
+visited.json
+
+# Python 캐시
+__pycache__/
+*.pyc
+*.pyo
+
+# 진단 스크립트 (운영 불필요)
+diagnose.py
