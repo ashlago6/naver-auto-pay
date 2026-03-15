@@ -49,6 +49,26 @@ naver-auto-pay/
 
 ---
 
+## 3-1. 새 환경(PC)에서 설치하는 방법
+
+`session.json`, `visited.json`, `diagnose.py` 세 파일은 저장소에 포함되지 않습니다.
+아래 순서대로 진행하면 자동으로 생성되거나 필요 없음을 확인할 수 있습니다.
+
+```
+1. git clone https://github.com/ashlago6/naver-auto-pay.git
+2. setup.bat   # pip install -r requirements.txt + playwright install chromium
+3. login.bat   # 브라우저에서 네이버 로그인 → session.json 자동 생성
+4. run.bat     # 첫 실행 시 visited.json 자동 생성
+```
+
+| 파일 | 없어도 되는 이유 | 생성 방법 |
+|------|-----------------|-----------|
+| `session.json` | 민감 정보(쿠키)라 저장소 공유 불가 | `login.bat` 실행 후 네이버 로그인 시 자동 생성 |
+| `visited.json` | 환경마다 다른 방문 기록 | `run.bat` 첫 실행 시 자동 생성 |
+| `diagnose.py`  | 디버깅 전용, 운영에 불필요 | 필요 시 AGENTS.md 참고해 별도 작성 |
+
+---
+
 ## 4. 핵심 설계 결정 (변경 시 주의)
 
 ### 4-1. 세션 유지 방식
