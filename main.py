@@ -80,22 +80,25 @@ def select_date_range() -> tuple[date, date]:
     print("=" * 50)
     print(f"  오늘: {today.strftime('%Y-%m-%d')}")
     print()
-    print("  1. 오늘 ~ 1일 전")
-    print("  2. 오늘 ~ 3일 전")
-    print("  3. 오늘 ~ 1주일 전")
-    print("  4. 직접 입력")
+    print("  1. 오늘만")
+    print("  2. 오늘 ~ 1일 전")
+    print("  3. 오늘 ~ 3일 전")
+    print("  4. 오늘 ~ 1주일 전")
+    print("  5. 직접 입력")
     print()
 
     while True:
-        choice = input("  선택 (1~4): ").strip()
+        choice = input("  선택 (1~5): ").strip()
 
         if choice == "1":
-            return today - timedelta(days=1), today
+            return today, today
         elif choice == "2":
-            return today - timedelta(days=3), today
+            return today - timedelta(days=1), today
         elif choice == "3":
-            return today - timedelta(days=7), today
+            return today - timedelta(days=3), today
         elif choice == "4":
+            return today - timedelta(days=7), today
+        elif choice == "5":
             print()
             print("  * 직접 입력 시 날짜 범위는 최대 7일로 제한됩니다.")
             print("  * 미래 날짜 및 90일 이전 날짜는 입력할 수 없습니다.")
@@ -141,7 +144,7 @@ def select_date_range() -> tuple[date, date]:
             print()
             return date_from, date_to
         else:
-            print("  1~4 중에서 선택해 주세요.")
+            print("  1~5 중에서 선택해 주세요.")
 
 
 def print_banner():
@@ -245,11 +248,7 @@ async def main():
         context = await browser.new_context(
             storage_state=SESSION_FILE,
             viewport={"width": 1280, "height": 800},
-            user_agent=(
-                "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
-                "AppleWebKit/537.36 (KHTML, like Gecko) "
-                "Chrome/124.0.0.0 Safari/537.36"
-            ),
+            user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
             ignore_https_errors=False,   # HTTPS 인증서 오류 허용 안 함
             permissions=[],              # 브라우저 권한 전부 거절
         )

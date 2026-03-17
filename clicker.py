@@ -72,6 +72,8 @@ async def collect_links_from_post(page: Page) -> list[str]:
             const bodySelectors = [
                 'div.board-contents',
                 'td.board-contents',
+                'div.view_content',
+                'td.board_content',
                 'div.post-content',
                 'div.view-content',
                 'div#content',
@@ -105,6 +107,8 @@ async def collect_links_from_post(page: Page) -> list[str]:
             const bodySelectors = [
                 'div.board-contents',
                 'td.board-contents',
+                'div.view_content',
+                'td.board_content',
                 'div.post-content',
                 'div.view-content',
             ];
@@ -177,7 +181,8 @@ async def find_and_click_naverpay_links(
 
     try:
         print(f"   [FIND] 게시글 열기: {post_url[:70]}...")
-        await page.goto(post_url, wait_until="domcontentloaded", timeout=30000)
+        await page.goto(post_url, wait_until="commit", timeout=30000)
+        await page.wait_for_load_state("domcontentloaded", timeout=30000)
         await random_delay(DELAY["page_min"], DELAY["page_max"])
         await human_like_scroll(page)
         await random_delay(DELAY["action_min"], DELAY["action_max"])
@@ -208,7 +213,7 @@ async def find_and_click_naverpay_links(
             try:
                 new_page = await context.new_page()
                 await new_page.goto(url, wait_until="commit", timeout=30000)
-                await new_page.wait_for_load_state("load", timeout=30000)
+                await new_page.wait_for_load_state("domcontentloaded", timeout=30000)
                 await random_delay(DELAY["page_min"], DELAY["page_max"])
 
                 await try_click_participation_button(new_page)

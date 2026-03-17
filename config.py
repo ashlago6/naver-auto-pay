@@ -11,7 +11,7 @@ _BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 BOARDS = [
     {
         "name": "뽐뿌 네이버페이 검색",
-        "url": "https://www.ppomppu.co.kr/search_bbs.php?page_size=50&bbs_cate=2&keyword=%B3%D7%C0%CC%B9%F6%C6%E4%C0%CC+%C6%F7%C0%CE%C6%AE&order_type=date&search_type=sub_memo",
+        "url": "https://www.ppomppu.co.kr/search_bbs.php?bbs_cate=2&keyword=%B3%D7%C0%CC%B9%F6%C6%E4%C0%CC+%C6%F7%C0%CE%C6%AE",
         "pages": 50,  # 날짜 범위 도달 시 자동 중단 (최대 안전 한도)
     },
 ]
@@ -21,12 +21,12 @@ KEYWORDS = ["네이버페이", "naver pay", "naverpay", "네이버 페이", "적
 
 # ----- 딜레이 설정 (초 단위) -----
 DELAY = {
-    "action_min": 1.5,
-    "action_max": 4.0,
+    "action_min": 2.0,
+    "action_max": 4.5,
     "page_min": 3.0,
-    "page_max": 8.0,
-    "post_min": 2.0,
-    "post_max": 5.0,
+    "page_max": 5.0,
+    "post_min": 3.0,
+    "post_max": 6.0,
 }
 
 # ----- 파일 경로 (절대경로 고정) -----

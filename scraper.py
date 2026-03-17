@@ -98,7 +98,7 @@ async def scrape_ppomppu_board(
             # commit: 응답 헤더 수신 즉시 반환 → 이후 리다이렉트가 일어나도 중단 없음
             # wait_for_load_state("load"): 리다이렉트 포함 최종 페이지가 완전히 로드될 때까지 대기
             await page.goto(current_url, wait_until="commit", timeout=30000)
-            await page.wait_for_load_state("load", timeout=30000)
+            await page.wait_for_load_state("domcontentloaded", timeout=30000)
             await random_delay(DELAY["page_min"], DELAY["page_max"])
 
             # 뽐뿌 검색결과 실제 구조:
